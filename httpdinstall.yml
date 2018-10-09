@@ -1,0 +1,13 @@
+---
+- name: installing apache
+  hosts: linux
+  become: true
+  tasks:
+  - name: install httpd
+    yum: pkg=httpd state=latest
+  - name: ensure apache is running
+    service: name=httpd state=running enabled=yes
+  - name: copy files to document root
+    copy: src=cloud.png dest=/var/www/html/cloud.png
+
+
